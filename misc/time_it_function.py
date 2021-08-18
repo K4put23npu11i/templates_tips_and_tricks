@@ -22,7 +22,6 @@ def time_it(i_function):
     return wrapper_timer
 
 
-
 def run1():
     print("Run1")
     print("wait 2 secs")
@@ -36,8 +35,6 @@ def run2():
     print("wait 2 secs")
     time.sleep(2)
     print("Done")
-
-
 
 
 if __name__ == '__main__':

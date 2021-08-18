@@ -24,8 +24,6 @@ def main():
     logger.addHandler(ch)
     logger.addHandler(fh)
     logger.setLevel(logging.DEBUG)
-    
-
 
     logger.debug('debug message - Level 10')
     logger.info('info message - Level 20')
@@ -39,13 +37,12 @@ def main():
     print('Print: Ende')
 
 
-
 """
-Hinweise zum Logging - Level
-von: https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
+Notice to Logging - Levels
+src: https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
 
 DEBUG:
-    ausführliche Details, internal state of loops, ...
+    detailed information, internal state of loops, ...
     
 INFO:
     handling requests or server state changed

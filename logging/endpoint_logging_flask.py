@@ -20,7 +20,6 @@ def root():
     output: str,
         html string which is diplayed at the endpoint
     """
-
     output = ""
     ordered_dic = sorted(LOGGING_DIC)
     for key in ordered_dic:
@@ -63,7 +62,6 @@ def log_to_endpoint(level: str, message: str):
     message: str,
         log messages
     """
-
     timestamp = datetime.now().strftime("%D, %H:%M:%S")
 
     # Include message when level is valid
@@ -94,7 +92,6 @@ def check_level(level: str) -> bool:
         true/false to indicate if the message should be included in existing log
 
     """
-
     lookup = {
         "DEBUG": 10,
         "INFO": 20,
