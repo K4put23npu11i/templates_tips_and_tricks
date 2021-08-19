@@ -1,4 +1,5 @@
-# Tkinter Course - Create Graphic User Interfaces in Python Tutorial - https://www.youtube.com/watch?v=YXPyB4XeYLA
+# Tkinter Course - Create Graphic User Interfaces in Python Tutorial
+# https://www.youtube.com/watch?v=YXPyB4XeYLA&t=632s
 
 from tkinter import *
 

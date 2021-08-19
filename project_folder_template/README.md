@@ -13,6 +13,8 @@ blablabla
 
 # Ordered list of action items
 ## MVP
+- [ ] Setup github repo and local repo from project template
+- [ ] Fill Readme with Header info, Description, Tasks, Goals, ...
 - [ ] Do this first
 - [ ] Then do this
 - [ ] And finally this to make it run
