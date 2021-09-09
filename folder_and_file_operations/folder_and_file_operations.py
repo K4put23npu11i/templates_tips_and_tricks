@@ -10,7 +10,7 @@ def build_checksum_of_directory(dir: str, ex_files: list = [], ex_ext: list = []
     Parameters
     ----------
     dir: str
-        directory to create has of
+        directory to create hash of
     ex_files: list
         list of files to be excluded of the hash creation
     ex_ext:
@@ -33,6 +33,21 @@ def build_checksum_of_directory(dir: str, ex_files: list = [], ex_ext: list = []
 
 
 def build_hash_of_file(filepath: str, hash_func: str = 'sha256'):
+    """
+    Returns a hash string of given file with hashlib
+
+    Parameters
+    ----------
+    filepath: str
+        path to file to be hashed
+    hash_func: str
+        indicator for hash function to be used. one of ['md5', 'sha1', 'sha256']
+
+    Returns
+    -------
+    hash: str
+        hexdigest of created file hash as string
+    """
     allowed_hash_functions = ['md5', 'sha1', 'sha256']  # fast, but "insecure" --> slow but more secure
     buf_size = 65536
 
@@ -44,7 +59,7 @@ def build_hash_of_file(filepath: str, hash_func: str = 'sha256'):
                 if not data:
                     break
                 hash.update(data)
-        return hash
+        return hash.hexdigest()
     else:
         return None
 
@@ -63,11 +78,10 @@ if __name__ == "__main__":
     print()
     filepath = './test_directory/package.json'
     file_hash1 = build_hash_of_file(filepath=filepath)
-    print(file_hash1)
-    print(file_hash1.hexdigest())
+    print(f"Hash file 1: {file_hash1}")
     filepath = './test_directory/test2.txt'
     file_hash2 = build_hash_of_file(filepath=filepath)
-    print(file_hash2)
+    print(f"Hash file 2: {file_hash2}")
     print(f"Files are equal: {file_hash1 == file_hash2}")
 
     # Reading and Writing files

@@ -4,7 +4,7 @@ import time
 logger = logging.getLogger()
 
 
-def await_user_input(message: str, allowed_answers: list = None) -> str:
+def await_user_input(message: str, allowed_answers: list = None, lang: str = "de") -> str:
     """
     Print message and wait for user input. Checks the input if allowed answers are specified.
 
@@ -14,18 +14,22 @@ def await_user_input(message: str, allowed_answers: list = None) -> str:
         string that will be printed as question for user input
     allowed_answers: list
         list of allowed answers. Input will not be checked if not specified
-
+    lang: str
+        indicator for language that should be used
     Returns
     ------
     user_input: str
         string of users input
     """
+    language = {
+        "de": "\nGegebener Wert ist nicht in erlaubten Antworten. Bitte nochmal versuchen.\nErlaubte Antworten lauten:",
+        "eng": "\nGiven input is not in allowed answers. Try again please.\nAllowed answers are: "
+    }
     allowed_answers_str_list = []
     if allowed_answers is not None:
         for element in allowed_answers:
             allowed_answers_str_list.append(str(element))
     logger.debug(f"Ask for approval for message: {message}")
-    logger.debug(f"Allowed answers for user are: {allowed_answers_str_list}")
     user_input = ""
     good_to_go = False
     while not good_to_go:
@@ -36,9 +40,7 @@ def await_user_input(message: str, allowed_answers: list = None) -> str:
                 user_input = inp
                 good_to_go = True
             else:
-                print("\nGiven input is not in allowed answers. Try again please.")
-                print("Allowed answers are: " + str(allowed_answers_str_list))
-                logger.warning(f"Given input ({inp}) is not valid. Ask user again.")
+                print(f"{language[lang]} {allowed_answers_str_list}")
         else:
             user_input = inp
             good_to_go = True

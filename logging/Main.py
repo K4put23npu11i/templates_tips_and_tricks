@@ -16,7 +16,7 @@ def main():
     ch.setLevel(logging.INFO)
     
     # create formatter and add it to the handlers
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s [%(module)s]: %(message)s',
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s [%(module)s - %(funcName)s()]: %(message)s",
                                   "%Y-%m-%d %H:%M:%S")
     ch.setFormatter(formatter)
     fh.setFormatter(formatter)
