@@ -31,8 +31,26 @@ root.iconbitmap('./data/icon.ico')
 # root.geometry("400x400")
 
 
+# Create function to delete a record
+def delete():
+    # Create a database or connect to it
+    conn = sqlite3.connect("data/address_book.db")
+
+    # Create a cursor
+    c = conn.cursor()
+
+    # Delete a record
+    c.execute("DELETE from addresses WHERE oid=" + delete_box.get())
+
+    # Commit Changes to Database
+    conn.commit()
+
+    # Close Database Connection
+    conn.close()
+
+
 def submit():
-    # Create a database and connect to it
+    # Create a database or connect to it
     conn = sqlite3.connect("data/address_book.db")
 
     # Create a cursor
@@ -82,9 +100,10 @@ def query():
     print_record = ""
     for record in records:
         print_record += str(record) + "\n"
+        # print_record += str(record[0]) + ' ' + str(record[1])
 
     query_label = Label(root, text=print_record)
-    query_label.grid(row=8, column=0, columnspan=2)
+    query_label.grid(row=11, column=0, columnspan=2)
 
 
     # Commit Changes to Database
@@ -96,7 +115,7 @@ def query():
 
 # Create Entry Boxes
 f_name = Entry(root, width=30)
-f_name.grid(row=0, column=1, padx=20)
+f_name.grid(row=0, column=1, padx=20, pady=(10, 0))
 l_name = Entry(root, width=30)
 l_name.grid(row=1, column=1, padx=20)
 address = Entry(root, width=30)
@@ -107,10 +126,13 @@ state = Entry(root, width=30)
 state.grid(row=4, column=1, padx=20)
 zipcode = Entry(root, width=30)
 zipcode.grid(row=5, column=1, padx=20)
+# Entry for delete box
+delete_box = Entry(root, width=30)
+delete_box.grid(row=8, column=1, padx=20)
 
 # Create Entry Labels beside
 f_name_label = Label(root, text="First Name: ")
-f_name_label.grid(row=0, column=0, padx=20)
+f_name_label.grid(row=0, column=0, padx=20, pady=(10, 0))
 l_name_label = Label(root, text="Last Name: ")
 l_name_label.grid(row=1, column=0, padx=20)
 address_label = Label(root, text="Address: ")
@@ -121,6 +143,9 @@ state_label = Label(root, text="State: ")
 state_label.grid(row=4, column=0, padx=20)
 zipcode_label = Label(root, text="Zip Code: ")
 zipcode_label.grid(row=5, column=0, padx=20)
+# Label for delete box
+delete_label = Label(root, text="Enter id to delete: ")
+delete_label.grid(row=8, column=0, padx=20)
 
 # Create submit button
 submit_btn = Button(root, text="Add Record To Database", command=submit)
@@ -129,6 +154,10 @@ submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 # Create a query Button
 query_btn = Button(root, text="Show Records", command=query)
 query_btn.grid(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+
+# Create Delete Button
+delete_btn = Button(root, text="Delete Record", command=delete)
+delete_btn.grid(row=9, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Start gui and loop over it to react on changes
 root.mainloop()
