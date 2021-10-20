@@ -1,6 +1,7 @@
 from checksumdir import dirhash
 import os
 import hashlib
+import json
 
 
 def build_checksum_of_directory(dir: str, ex_files: list = [], ex_ext: list = [], hash_func: str = 'sha256'):
@@ -94,3 +95,9 @@ if __name__ == "__main__":
     lines.append("New line :) \n")
     with open(filepath_txt, 'w') as f:
         f.writelines(lines)
+
+    # Reading json file
+    filepath_json = "./test_directory/package.json"
+    with open(filepath_json, 'r', encoding='utf-8') as f:
+        dict = json.load(f)
+    print(dict)
